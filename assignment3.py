@@ -39,8 +39,6 @@ class Net(nn.Module):
 		x = self.fc2(x)
 		return F.log_softmax(x, dim=1)
 
-net = Net()
-
 f = open("result.txt", 'w')
 str = input("실험할 항목 선택(batch, activation, loss, initialization 중 하나): ")
 
@@ -50,6 +48,12 @@ loss_select = ['softmax_cross', 'softmax_l2', 'softmax_l1', 'sigmoid_cross', 'si
 initializations_select = ['uniform', 'gaussian', 'xavier', 'msra']
 
 layer_change = {'batch': batch_select, 'activation': activation_select, 'loss': loss_select, 'initialization': initializations_select}
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print(device)
+
+net = Net()
+net = net.to(device)
 
 for variance in layer_change[str]:
 	print(f'{variance} start')
@@ -78,9 +82,6 @@ for variance in layer_change[str]:
 	data_lengths = {"train": len(train_idx), "val": val_len}
 	test_loader = torch.utils.data.DataLoader(dataset=mnist_test, batch_size=batch_size, shuffle=False)
 
-	device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-	print(device)
-
 	if variance == 'uniform':
 		for p in net.parameters():
 			p.data.uniform_(-1, 1)
@@ -89,7 +90,7 @@ for variance in layer_change[str]:
 			p.data.normal_(0, 1)
 	if variance == 'xavier':
 		for p in net.parameters():
-			p.data.xavier_uniform_(1)
+			p.data.xavier_uniform_()
 	if variance == 'msra':
 		for p in net.parameters():
 			p.data.kaiming_uniform_()
