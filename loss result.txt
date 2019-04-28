@@ -1,0 +1,24 @@
+loss softmax_cross:
+ Train Accuracy: 0.9978518518518519
+ Validation Accuracy: 0.9901666666666666
+ Test Accuracy: 0.9898
+loss softmax_l2:
+ Train Accuracy: 0.20822222222222223
+ Validation Accuracy: 0.21216666666666667
+ Test Accuracy: 0.2104
+loss softmax_l1:
+ Train Accuracy: 0.10088888888888889
+ Validation Accuracy: 0.09
+ Test Accuracy: 0.0892
+loss sigmoid_cross:
+ Train Accuracy: 0.11275925925925925
+ Validation Accuracy: 0.10883333333333334
+ Test Accuracy: 0.1135
+loss sigmoid_l2:
+ Train Accuracy: 0.11272222222222222
+ Validation Accuracy: 0.10916666666666666
+ Test Accuracy: 0.1135
+loss sigmoid_l1:
+ Train Accuracy: 0.11212962962962963
+ Validation Accuracy: 0.1145
+ Test Accuracy: 0.1135

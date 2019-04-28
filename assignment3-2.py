@@ -82,48 +82,57 @@ accuracy_over_epoch = {'train': [], 'val': []}
 f = open("result.txt", 'w')
 
 for epoch in range(num_epochs):
-	for phase in ['train', 'val']:
-		if phase == 'train':
-			alexnet.train(True)
-		else:
-			alexnet.train(False)
-		correct = [0,0,0,0,0,0,0,0,0,0]
-		total = [0,0,0,0,0,0,0,0,0,0]
-		for i, (images, labels) in enumerate(data_loaders[phase]):
-			images = images.to(device)
-			labels = labels.to(device)
-			optimizer.zero_grad()
-			outputs = alexnet(images)
-			loss = criterion(outputs, labels)
-			_, predicted = torch.max(outputs.data, 1)
-			for i in labels.size(0):
-				total[labels[i]] += 1
-			for i in labels.size(0):
-				if predicted[i] == labels[i]:
-					correct[labels[i]] += 1
-			if phase == 'train':
-				loss.backward()
-				optimizer.step()
-			if (i+1) % 2 == 0:
-				print(f'Epoch [{epoch+1}/{num_epochs}], Iter [{i+1}/{len(data_loaders[phase].dataset)/batch_size}] Loss: {loss.data.item():.4f}')
-		print(f'Epoch [{epoch+1}/{num_epochs}], {phase} Accuracy: {float(sum(correct))/sum(total)}')
-		accuracy_over_epoch[phase].append(correct, total)
+    for phase in ['train', 'val']:
+        if phase == 'train':
+            alexnet.train(True)
+        else:
+            alexnet.train(False)
+        correct = [0,0,0,0,0,0,0,0,0,0]
+        total = [0,0,0,0,0,0,0,0,0,0]
+        for i, (images, labels) in enumerate(data_loaders[phase]):
+            images = images.to(device)
+            labels = labels.to(device)
+            optimizer.zero_grad()
+            outputs = alexnet(images)
+            loss = criterion(outputs, labels)
+            _, predicted = torch.max(outputs.data, 1)
+            for j in range(labels.shape[0]):
+                total[labels[j]] += 1
+            for j in range(labels.shape[0]):
+                if predicted[j] == labels[j]:
+                    correct[labels[j]] += 1
+            if phase == 'train':
+                loss.backward()
+                optimizer.step()
+            if (i+1) % 10 == 0:
+                print(f'Epoch [{epoch+1}/{num_epochs}], Iter [{i+1}/{len(data_loaders[phase].dataset)/batch_size}] Loss: {loss.data.item():.4f}')
+        print(f'Epoch [{epoch+1}/{num_epochs}], {phase} Accuracy: {float(sum(correct))/sum(total)}')
+        accuracy_over_epoch[phase].append((correct, total))
 
 alexnet.eval()
 correct = [0,0,0,0,0,0,0,0,0,0]
 total = [0,0,0,0,0,0,0,0,0,0]
 for images, labels in test_loader:
-	images = images.to(device)
-	outputs = alexnet(images)
-	_, predicted = torch.max(outputs.data, 1)
-	for i in labels.size(0):
-		total[labels[i]] += 1
-	for i in labels.size(0):
-		if predicted[i] == labels[i]:
-			correct[labels[i]] += 1
-print(f'test Accuracy = {(100 * correct/total)}%')
+    images = images.to(device)
+    labels = labels.to(device)
+    outputs = alexnet(images)
+    _, predicted = torch.max(outputs.data, 1)
+    for j in range(labels.shape[0]):
+        total[labels[j]] += 1
+    for j in range(labels.shape[0]):
+        if predicted[j] == labels[j]:
+            correct[labels[j]] += 1
 
-f.write(f"Final Accuracy:")
-f.write(f" Train Accuracy: {accuracy_over_epoch['train'][-1]}")
-f.write(f" Validation Accuracy: {accuracy_over_epoch['val'][-1]}")
-f.write(f" Test Accuracy: {correct, total}")
+f.write(f"Final Correct/Total:\n")
+f.write(f" Train Accuracy: {accuracy_over_epoch['train'][-1]}\n")
+f.write(f" Validation Accuracy: {accuracy_over_epoch['val'][-1]}\n")
+f.write(f" Test Accuracy: {correct, total}\n")
+
+tuple = accuracy_over_epoch['train'][-1]
+tuple2 = accuracy_over_epoch['val'][-1]
+
+
+f.write(f"Final Accuracy:\n")
+f.write(f" Train Accuracy: {np.array(tuple[0])/np.array(tuple[1])}\n")
+f.write(f" Validation Accuracy: {np.array(tuple2[0])/np.array(tuple2[1])}\n")
+f.write(f" Test Accuracy: {np.array(correct)/np.array(total)}\n")

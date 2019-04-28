@@ -1,0 +1,16 @@
+batch 1:
+ Train Accuracy: 0.9887407407407407
+ Validation Accuracy: 0.9855
+ Test Accuracy: 0.9859
+batch 4:
+ Train Accuracy: 0.997
+ Validation Accuracy: 0.9911666666666666
+ Test Accuracy: 0.9861
+batch 16:
+ Train Accuracy: 0.9988518518518519
+ Validation Accuracy: 0.997
+ Test Accuracy: 0.9874
+batch 32:
+ Train Accuracy: 0.9991481481481481
+ Validation Accuracy: 0.9976666666666667
+ Test Accuracy: 0.9891

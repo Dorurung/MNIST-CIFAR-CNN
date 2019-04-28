@@ -1,0 +1,4 @@
+best best:
+ Train Accuracy: 0.9999814814814815
+ Validation Accuracy: 0.9916666666666667
+ Test Accuracy: 0.9915

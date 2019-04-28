@@ -1,0 +1,12 @@
+activation sigmoid:
+ Train Accuracy: 1.0
+ Validation Accuracy: 0.9911666666666666
+ Test Accuracy: 0.9915
+activation tanh:
+ Train Accuracy: 0.9976481481481482
+ Validation Accuracy: 0.992
+ Test Accuracy: 0.987
+activation relu:
+ Train Accuracy: 0.9983518518518518
+ Validation Accuracy: 0.9895
+ Test Accuracy: 0.9863

@@ -1,0 +1,16 @@
+initialization uniform:
+ Train Accuracy: 0.9943888888888889
+ Validation Accuracy: 0.9748333333333333
+ Test Accuracy: 0.9779
+initialization gaussian:
+ Train Accuracy: 0.9929629629629629
+ Validation Accuracy: 0.9715
+ Test Accuracy: 0.9703
+initialization xavier:
+ Train Accuracy: 0.9971111111111111
+ Validation Accuracy: 0.9858333333333333
+ Test Accuracy: 0.9877
+initialization msra:
+ Train Accuracy: 0.9982962962962963
+ Validation Accuracy: 0.9856666666666667
+ Test Accuracy: 0.9868
