@@ -5,6 +5,7 @@ import torchvision.models as models
 import torchvision.datasets as dsets
 import torchvision.transforms as transforms
 import numpy as np
+import matplotlib.pyplot as plt
 from torch.autograd import Variable
 from torch.nn.init import xavier_uniform_
 from torch.utils.data.sampler import SubsetRandomSampler
@@ -33,10 +34,10 @@ class AlexNet(nn.Module):
             nn.MaxPool2d(kernel_size=2),
         )
         self.classifier = nn.Sequential(
-            nn.Dropout(),
+            nn.Dropout(p=0.5),
             nn.Linear(256 * 2 * 2, 4096),
             nn.ReLU(inplace=True),
-            nn.Dropout(),
+            nn.Dropout(p=0.5),
             nn.Linear(4096, 4096),
             nn.ReLU(inplace=True),
             nn.Linear(4096, num_classes),
@@ -48,7 +49,7 @@ class AlexNet(nn.Module):
         x = self.classifier(x)
         return x
 
-num_epochs = 5
+num_epochs = 20
 batch_size = 128
 learning_rate = 0.001
 
@@ -133,6 +134,11 @@ tuple2 = accuracy_over_epoch['val'][-1]
 
 
 f.write(f"Final Accuracy:\n")
-f.write(f" Train Accuracy: {np.array(tuple[0])/np.array(tuple[1])}\n")
-f.write(f" Validation Accuracy: {np.array(tuple2[0])/np.array(tuple2[1])}\n")
-f.write(f" Test Accuracy: {np.array(correct)/np.array(total)}\n")
+f.write(f" Train Accuracy: {np.array(tuple[0])/np.array(tuple[1])}{(np.array(tuple[0])/np.array(tuple[1])).mean()}\n")
+f.write(f" Validation Accuracy: {np.array(tuple2[0])/np.array(tuple2[1])}{(np.array(tuple2[0])/np.array(tuple2[1])).mean()}\n")
+f.write(f" Test Accuracy: {np.array(correct)/np.array(total)}{(np.array(correct)/np.array(total)).mean()}\n")
+
+#plt.plot(range(num_epochs), accuracy_over_epoch['train'])
+#plt.plot(range(num_epochs), accuracy_over_epoch['val'])
+#plt.savefig('learning_curve.png')
+#plt.show()

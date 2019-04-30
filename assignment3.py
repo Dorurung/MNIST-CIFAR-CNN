@@ -62,12 +62,11 @@ layer_change = {'batch': batch_select, 'activation': activation_select, 'loss': 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 
-net = Net()
-net = net.to(device)
-
 f = open(f"{str} result.txt", 'w')
 
 for variance in layer_change[str]:
+    net = Net()
+    net = net.to(device)
     print(f'{variance} start')
     num_epochs = 20
     if str == 'batch':
@@ -98,10 +97,12 @@ for variance in layer_change[str]:
 
     if variance == 'uniform':
         for p in net.parameters():
-            p.data.uniform_(-1, 1)
+            if p.dim() > 1:
+                p.data.uniform_(-1, 1)
     if variance == 'gaussian':
         for p in net.parameters():
-            p.data.normal_(0, 1)
+            if p.dim() > 1:
+                p.data.normal_(0, 1)
     if variance == 'xavier':
         for p in net.parameters():
             if p.dim() > 1:
