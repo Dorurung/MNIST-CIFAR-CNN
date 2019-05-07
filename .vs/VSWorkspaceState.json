@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\data",
+    "\\model"
   ],
-  "SelectedNode": "\\assignment3.py",
+  "SelectedNode": "\\assignment3-2.py",
   "PreviewInSolutionExplorer": false
 }

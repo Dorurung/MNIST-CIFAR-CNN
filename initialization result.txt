@@ -1,16 +1,16 @@
 initialization uniform:
- Train Accuracy: 0.9954259259259259
- Validation Accuracy: 0.9751666666666666
- Test Accuracy: 0.9771
+ Train Accuracy: 0.9725370370370371
+ Validation Accuracy: 0.9585
+ Test Accuracy: 0.9585
 initialization gaussian:
- Train Accuracy: 0.9938518518518519
- Validation Accuracy: 0.9716666666666667
- Test Accuracy: 0.9743
+ Train Accuracy: 0.9532962962962963
+ Validation Accuracy: 0.948
+ Test Accuracy: 0.9544
 initialization xavier:
- Train Accuracy: 0.9981851851851852
- Validation Accuracy: 0.9865
- Test Accuracy: 0.9888
+ Train Accuracy: 0.9317777777777778
+ Validation Accuracy: 0.9323333333333333
+ Test Accuracy: 0.9396
 initialization msra:
- Train Accuracy: 0.9986851851851852
- Validation Accuracy: 0.9881666666666666
- Test Accuracy: 0.989
+ Train Accuracy: 0.9578703703703704
+ Validation Accuracy: 0.9516666666666667
+ Test Accuracy: 0.9586

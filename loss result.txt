@@ -1,24 +1,24 @@
 loss softmax_cross:
- Train Accuracy: 0.9978518518518519
- Validation Accuracy: 0.9895
- Test Accuracy: 0.9872
+ Train Accuracy: 0.911
+ Validation Accuracy: 0.9083333333333333
+ Test Accuracy: 0.9192
 loss softmax_l2:
- Train Accuracy: 0.9998333333333334
- Validation Accuracy: 0.9896666666666667
- Test Accuracy: 0.9902
+ Train Accuracy: 0.7593703703703704
+ Validation Accuracy: 0.7563333333333333
+ Test Accuracy: 0.773
 loss softmax_l1:
- Train Accuracy: 0.09703703703703703
- Validation Accuracy: 0.089
- Test Accuracy: 0.0884
+ Train Accuracy: 0.06490740740740741
+ Validation Accuracy: 0.06
+ Test Accuracy: 0.065
 loss sigmoid_cross:
- Train Accuracy: 0.9932407407407408
- Validation Accuracy: 0.9893333333333333
- Test Accuracy: 0.9897
+ Train Accuracy: 0.6638333333333334
+ Validation Accuracy: 0.6768333333333333
+ Test Accuracy: 0.7038
 loss sigmoid_l2:
- Train Accuracy: 0.9981666666666666
- Validation Accuracy: 0.9896666666666667
- Test Accuracy: 0.9903
+ Train Accuracy: 0.18631481481481482
+ Validation Accuracy: 0.18033333333333335
+ Test Accuracy: 0.1778
 loss sigmoid_l1:
- Train Accuracy: 0.1298888888888889
- Validation Accuracy: 0.135
- Test Accuracy: 0.1282
+ Train Accuracy: 0.1617962962962963
+ Validation Accuracy: 0.1525
+ Test Accuracy: 0.159
